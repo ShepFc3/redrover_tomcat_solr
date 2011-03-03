@@ -219,6 +219,7 @@ if [ -z "$LOGGING_CONFIG" ]; then
   fi
 fi
 
+JAVA_OPTS="-Xms512M -Xmx1G"
 if [ -z "$LOGGING_MANAGER" ]; then
   JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 else
