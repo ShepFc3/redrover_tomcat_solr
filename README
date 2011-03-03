@@ -1,0 +1,27 @@
+Install (Submodule)
+----------------------------------------
+git submodule add git@github.com:ShepFc3/redrover_tomcat_solr.git lib/tomcat_solr
+git submodule init
+
+Update
+----------------------------------------
+git submodule update
+
+Usage
+----------------------------------------
+Start:  rake tomcat:solr:start
+Stop:   rake tomcat:solr:stop
+Status: rake tomcat:solr:status
+
+Logs
+----------------------------------------
+tomcat/logs/catalina.out
+
+CoreAdmin config
+----------------------------------------
+Enables MultiCore functionality by placing solr.xml is Solr home:
+solr/solr.xml
+
+Creates two cores test and development
+Sets the instance directory to solr/{test|development}
+Core URL is set to http://localhost:8080/solr/{test|development}

@@ -1,4 +1,4 @@
-tomcat/logs
+tomcat/logs/*.log
 tomcat/work/Catalina/localhost/solr
 tomcat/conf/Catalina/localhost
 tomcat/temp
