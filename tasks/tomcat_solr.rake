@@ -5,7 +5,7 @@ namespace :tomcat do
     task :restart => [:stop, :start]
 
     desc "Start local Tomcat Solr on localhost:8080"
-    task :start => :status do 
+    task :start => [:status, :multicore_init] do 
       unless @running
         Rake::Task["tomcat:solr:solr_instance"].invoke
         exec("bash", "-c", "#{ENV["CATALINA_HOME"]}/bin/catalina.sh start") if fork.nil?
@@ -52,6 +52,15 @@ namespace :tomcat do
       else
         puts "Tomcat is not running"
         false
+      end
+    end
+
+    desc "Symlinks solr.xml into solr home to enable MultiCore"
+    task :multicore_init do
+      solr_xml_src = Rails.root.join('lib', 'tomcat_solr', 'solr', 'solr.xml')
+      solr_xml_dest = Rails.root.join('solr', 'solr.xml')
+      unless File.exists?(solr_xml_dest)
+        File.symlink(solr_xml_src, solr_xml_dest) 
       end
     end
   end
