@@ -1,2 +1,3 @@
 tomcat/logs
 tomcat/work/Catalina/localhost/solr
+tomcat/conf/Catalina/localhost
