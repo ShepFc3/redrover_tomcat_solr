@@ -1,6 +1,6 @@
 tomcat/logs/*.log
 tomcat/logs/*.out
 tomcat/logs/*.txt
-tomcat/work/Catalina/localhost/solr
+tomcat/work/Catalina/localhost
 tomcat/conf/Catalina/localhost
 tomcat/temp
