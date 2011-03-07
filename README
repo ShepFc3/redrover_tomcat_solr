@@ -1,10 +1,19 @@
+Pre-Install
+----------------------------------------
+Set JAVA_HOME:
+MAC OS X: export JAVA_HOME=/Library/Java/Home
+Ubuntu: export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre
+
 Install (Submodule)
 ----------------------------------------
 git submodule add git@github.com:ShepFc3/redrover_tomcat_solr.git lib/tomcat_solr
-git submodule init
 
 Update
 ----------------------------------------
+git submodule init
+cd lib/tomcat_solr
+git submodule update
+cd -
 git submodule update
 
 Usage
