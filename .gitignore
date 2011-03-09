@@ -1,6 +1,8 @@
 tomcat/logs/*.log
 tomcat/logs/*.out
 tomcat/logs/*.txt
+tomcat/work/Catalina/localhost/*
 tomcat/work/Catalina/localhost/**/*
+tomcat/conf/Catalina/localhost/*
 tomcat/conf/Catalina/localhost/**/*
 tomcat/temp

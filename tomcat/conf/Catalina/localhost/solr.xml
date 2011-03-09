@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context debug="0" docBase="/home/shep/Development/redrover/solr/lib/apache-solr.war" crossContext="true">
-  <Environment override="true" type="java.lang.String" value="/home/shep/Development/redrover/solr" name="solr/home"/>
-</Context>
