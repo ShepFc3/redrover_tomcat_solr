@@ -1,21 +1,18 @@
 namespace :tomcat do
   namespace :solr do
 
-    desc "Restart Tomcat Solr"
-    task :restart => [:stop, :start]
-
     desc "Start local Tomcat Solr on localhost:8080"
     task :start => [:status, :multicore_init] do 
       unless @running
         Rake::Task["tomcat:solr:solr_instance"].invoke
-        exec("bash", "-c", "#{ENV["CATALINA_HOME"]}/bin/catalina.sh start") if fork.nil?
+        exec("bash", "-c", "#{ENV["CATALINA_HOME"]}/bin/catalina.sh start")
       end
     end
 
     desc "Stop local Tomcat Solr"
     task :stop => :status do 
       if @running
-        exec("bash", "-c", "#{ENV["CATALINA_HOME"]}/bin/catalina.sh stop") if fork.nil?
+        exec("bash", "-c", "#{ENV["CATALINA_HOME"]}/bin/catalina.sh stop")
       end
     end
 
@@ -40,13 +37,15 @@ namespace :tomcat do
 
     desc "Check the processes compared to the pid"
     task :status => :java_env do
-      pid = Dir.glob(File.join(ENV["CATALINA_HOME"], "temp", "**", "*[0-9]*"))
-      @running = if pid.present?
-        if Process.getpgid(pid.first.to_i).present? 
+      pid_file = Dir.glob(File.join(ENV["CATALINA_HOME"], "temp", "**", "*[0-9]*"))
+      @running = if pid_file.present?
+        if `ps -ef | grep #{pid_file[0][/(\d+)$/]} | grep tomcat | grep -v grep`.present? 
           puts "Tomcat is running"
           true
         else
-          puts "Found pid, but process is not running"
+          puts "Found pid #{pid_file}, but process is not running"
+          puts "Removing stale pid file"
+          File.delete(pid_file.first)
           false
         end
       else
