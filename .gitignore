@@ -1,4 +1,5 @@
 **/.DS_Store
+tomcat/bin/*.pid
 tomcat/logs/*.log
 tomcat/logs/*.out
 tomcat/logs/*.txt
