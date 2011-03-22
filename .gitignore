@@ -1,8 +1,9 @@
+**/.DS_Store
 tomcat/logs/*.log
 tomcat/logs/*.out
 tomcat/logs/*.txt
 tomcat/work/Catalina/localhost/*
 tomcat/work/Catalina/localhost/**/*
 tomcat/conf/Catalina/localhost/solr.xml
-#tomcat/conf/Catalina/localhost/**/*
+tomcat/temphsperfdata_pivotal/*
 tomcat/temp
