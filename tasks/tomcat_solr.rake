@@ -16,6 +16,10 @@ namespace :tomcat do
       end
     end
 
+    task :kill do
+      exec("kill -9 $(ps aux | grep java | grep tomcat | grep -v grep | awk '{print $2;}')")
+    end
+
     desc "Ensure Java environment variables"
     task :java_env do
       raise "Must have JAVA_HOME defined\nUse: export=JAVA_HOME=/path/to/java/jre" unless ENV["JAVA_HOME"].present?
