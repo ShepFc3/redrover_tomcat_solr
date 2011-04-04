@@ -16,6 +16,8 @@ namespace :tomcat do
       end
     end
 
+    task :restart => [:stop, :start]
+
     task :kill do
       exec("kill -9 $(ps aux | grep java | grep tomcat | grep -v grep | awk '{print $2;}')")
     end
