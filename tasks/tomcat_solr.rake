@@ -26,6 +26,7 @@ namespace :tomcat do
     task :java_env do
       raise "Must have JAVA_HOME defined\nUse: export=JAVA_HOME=/path/to/java/jre" unless ENV["JAVA_HOME"].present?
       ENV["CATALINA_HOME"] ||= File.expand_path(File.join(File.dirname(__FILE__), '..', 'tomcat'))
+      ENV["CATALINA_PID"] ||= Rails.root.join('tmp', 'pids', 'tomcat.pid')
     end
 
     desc "Build dynamic solr instance"
@@ -43,15 +44,15 @@ namespace :tomcat do
 
     desc "Check the processes compared to the pid"
     task :status => :java_env do
-      pid_file = Dir.glob(File.join(ENV["CATALINA_HOME"], "temp", "**", "*[0-9]*"))
-      @running = if pid_file.present?
-        if `ps -ef | grep #{pid_file[0][/(\d+)$/]} | grep tomcat | grep -v grep`.present? 
+      @running = if File.exists?(ENV["CATALINA_PID"])
+        pid = IO.read(ENV["CATALINA_PID"]).to_i
+        if `ps --no-headers -p #{pid}`.present?
           puts "Tomcat is running"
           true
         else
-          puts "Found pid #{pid_file}, but process is not running"
+          puts "Found pid #{pid}, but process is not running"
           puts "Removing stale pid file"
-          File.delete(pid_file.first)
+          File.delete(ENV["CATALINA_PID"])
           false
         end
       else
