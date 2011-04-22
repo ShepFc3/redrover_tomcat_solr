@@ -26,6 +26,7 @@ namespace :tomcat do
     task :java_env do
       raise "Must have JAVA_HOME defined\nUse: export=JAVA_HOME=/path/to/java/jre" unless ENV["JAVA_HOME"].present?
       ENV["CATALINA_HOME"] ||= File.expand_path(File.join(File.dirname(__FILE__), '..', 'tomcat'))
+      Dir.mkdir(Rails.root.join('tmp', 'pids')) unless File.directory?(Rails.root.join('tmp', 'pids'))
       ENV["CATALINA_PID"] ||= Rails.root.join('tmp', 'pids', 'tomcat.pid')
     end
 
