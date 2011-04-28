@@ -1,36 +1,36 @@
-Pre-Install
+Pre-Install  
 ----------------------------------------
-Set JAVA_HOME:
-MAC OS X: export JAVA_HOME=/Library/Java/Home
-Ubuntu: export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre
+Set JAVA_HOME:  
+MAC OS X: export JAVA_HOME=/Library/Java/Home  
 
-Install (Submodule)
+Ubuntu:  
+apt-get install sun-java6-jre  
+export JAVA_HOME=/usr/lib/jvm/java-6-sun/jre  
+
+Install (Submodule)  
 ----------------------------------------
-git submodule add git@github.com:ShepFc3/redrover_tomcat_solr.git lib/tomcat_solr
+git submodule add git@github.com:ShepFc3/redrover_tomcat_solr.git lib/tomcat_solr  
 
-Update
+Update  
 ----------------------------------------
-git submodule init
-cd lib/tomcat_solr
-git submodule update
-cd -
-git submodule update
+git submodule init  
+git submodule update  
 
-Usage
+Usage  
 ----------------------------------------
-Start:  rake tomcat:solr:start
-Stop:   rake tomcat:solr:stop
-Status: rake tomcat:solr:status
+Start:  rake tomcat:solr:start  
+Stop:   rake tomcat:solr:stop  
+Status: rake tomcat:solr:status  
 
-Logs
+Logs  
 ----------------------------------------
 tomcat/logs/catalina.out
 
-CoreAdmin config
+CoreAdmin config  
 ----------------------------------------
 Enables MultiCore functionality by placing solr.xml is Solr home:
 solr/solr.xml
 
-Creates two cores test and development
-Sets the instance directory to solr/{test|development}
+Creates two cores test and development  
+Sets the instance directory to solr/{test|development}  
 Core URL is set to http://localhost:8080/solr/{test|development}
