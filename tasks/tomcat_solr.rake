@@ -47,7 +47,7 @@ namespace :tomcat do
     task :status => :java_env do
       @running = if File.exists?(ENV["CATALINA_PID"])
         pid = IO.read(ENV["CATALINA_PID"]).to_i
-        if `ps --no-headers -p #{pid}`.present?
+        if `ps -p #{pid} | grep -i java`.present?
           puts "Tomcat is running"
           true
         else
